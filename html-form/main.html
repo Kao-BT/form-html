@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มข้อมูล</title>
+    <script src="form-submit.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            /* สีพื้นหลังของทั้งหน้า */
+        }
+
+        /* กำหนดกรอบรอบแบบฟอร์ม และสีพื้นหลัง */
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #000;
+            /* กรอบรอบฟอร์ม */
+            border-radius: 10px;
+            /* มุมโค้งมน */
+            background-color: #fff;
+            /* สีพื้นหลังของฟอร์ม */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* เพิ่มเงา */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            color: #555;
+            /* สีตัวอักษร */
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            /* มุมโค้งมน */
+            background-color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #66afe9;
+            outline: none;
+            box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+        }
+
+        .form-group:last-child {
+            margin-right: 0;
+        }
+
+        /* ส่วนการค้นหา */
+        .search-container {
+            padding: 20px;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .radio-group label {
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">เครื่องมือประเมิน วินิจฉัย และจัดการทางสังคม</h2>
+        <h2 style="text-align: center;">(Social Diagnosis and Management Assessment) ตัวย่อ S.D.M.A</h2>
+    </div>
+    <!--ส่วนที่ 1 -->
+    <div class="form-container">
+        <h3>ส่วนที่ 1 ข้อมูลทั่วไป</h3>
+
+        <form id="myUsers">
+            <!-- วันที่, HN, AN, เลขสค -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">วันที่:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="hn">HN:</label>
+                    <input type="text" id="hn" name="hn">
+                </div>
+                <div class="form-group">
+                    <label for="an">AN:</label>
+                    <input type="text" id="an" name="an">
+                </div>
+                <div class="form-group">
+                    <label for="sok">เลข สค(SN):</label>
+                    <input type="text" id="sn" name="sn">
+                </div>
+            </div>
+
+            <!-- คำหน้า, ชื่อ-สกุล, เลขบัตรประชาชน, วันเดือนปีเกิด -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prefix">คำหน้า:</label>
+                    <input type="text" id="prefix" name="prefix">
+                </div>
+                <div class="form-group">
+                    <label for="fullname">ชื่อ-สกุล:</label>
+                    <input type="text" id="fullname" name="fullname">
+                </div>
+                <div class="form-group">
+                    <label for="idcard">เลขบัตรประชาชน:</label>
+                    <input type="text" id="idcard" name="idcard">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">วันเดือนปีเกิด:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+            </div>
+
+            <!-- อายุ, สัญชาติ, เชื้อ, ศาสนา -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="age">อายุ:</label>
+                    <input type="number" id="age" name="age">
+                </div>
+                <div class="form-group">
+                    <label for="nationality">สัญชาติ:</label>
+                    <input type="text" id="nationality" name="nationality">
+                </div>
+                <div class="form-group">
+                    <label for="ethnicity">เชื้อชาติ:</label>
+                    <input type="text" id="ethnicity" name="ethnicity">
+                </div>
+                <div class="form-group">
+                    <label for="religion">ศาสนา:</label>
+                    <input type="text" id="religion" name="religion">
+                </div>
+            </div>
+
+            <!-- สถานภาพสมรส, การศึกษา -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="marital_status">สถานภาพสมรส:</label>
+                    <select id="marital_status" name="marital_status">
+                        <option value="โสด">โสด</option>
+                        <option value="แต่งงานแล้ว">แต่งงานแล้ว</option>
+                        <option value="หย่าร้าง">หย่าร้าง</option>
+                        <option value="หม้าย">หม้าย</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="education">การศึกษา:</label>
+                    <input type="text" id="education" name="education">
+                </div>
+            </div>
+
+            <!-- สิทธิการรักษา, อาชีพ, หมายเลขโทรศัพท์ -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="treatment_rights">สิทธิการรักษา:</label>
+                    <input type="text" id="treatment_rights" name="treatment_rights">
+                </div>
+                <div class="form-group">
+                    <label for="occupation">อาชีพ:</label>
+                    <input type="text" id="occupation" name="occupation">
+                </div>
+                <div class="form-group">
+                    <label for="phone">หมายเลขโทรศัพท์:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+            </div>
+
+            <!-- ที่อยู่ปัจจุบัน -->
+            <div class="form-row">
+                <div class="form-group" style="flex: 1;">
+                    <label for="address">ที่อยู่ปัจจุบัน:</label>
+                    <textarea id="address" name="address" rows="4"></textarea>
+                </div>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+
+    </div>
+    <!--ส่วนที่ 2 -->
+    <div class="form-container">
+        <form id="mySearchInfo">
+            <h3>ส่วนที่ 2 ข้อมูลการค้นหาข้อเท็จจริงเบื้องต้น</h3>
+            <!-- ข้อมูลการค้นหาแบบ dropdown -->
+            <h4>การค้นหาข้อเท็จจริงเบื้องต้น:</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="search_criteria">การรับเรื่อง:</label>
+                    <select id="search_criteria" name="search_criteria" onchange="showFields_1()">
+                        <option value="patient_himself">ผู้ป่วยมาด้วยตัวเอง</option>
+                        <option value="community_patients">ผู้ป่วยในชุมชน</option>
+                        <option value="organization">หน่วยงานภายนอก</option>
+                        <option value="internal">หน่วยงานภายใน</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ฟิลด์ที่จะปรากฏเมื่อเลือก "หน่วยงานภายนอก" -->
+            <div id="organization_field" class="form-group hidden">
+                <label for="organization_input">กรุณาระบุหน่วยงาน:</label>
+                <input type="text" id="organization_input" name="organization_input" placeholder="ชื่อหน่วยงาน">
+            </div>
+
+            <!-- ฟิลด์ที่จะปรากฏเมื่อเลือก "หน่วยงานภายใน" -->
+            <div id="internal_fields" class="form-group hidden">
+                <label for="department_input">ระบุแผนก:</label>
+                <input type="text" id="department_input" name="department_input" placeholder="ชื่อแผนก">
+            </div>
+            <div id="admit_date_field" class="form-group hidden">
+                <label for="admit_date">Admit วันที่:</label>
+                <input type="date" id="admit_date" name="admit_date">
+            </div>
+            <!-- ข้อมูลการค้นหาแบบ dropdown -->
+            <h4>กลุ่มเป้าหมายสังคมสงเคราะห์ทางการแพทย์:</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="service_type">ประเภทผู้ใช้บริการ:</label>
+                    <select id="service_type" name="service_type" onchange="showFields_2()">
+                        <option value="general_service_user">ผู้ใข้บริการทั่วไป</option>
+                        <option value="general_patient">ผู้ป่วยทั่วไป</option>
+                        <option value="chronic_disease_patient">ผู้ป่วยโรคเรื้อรัง</option>
+                        <option value="oscc">OSCC</option>
+                        <option value="drug_addict">ผู้ติดสารเสพติด</option>
+                        <option value="psychiatric_patient">ผู้ป่วยจิตเวช</option>
+                        <option value="disabled_person">ผู้พิการ</option>
+                        <option value="work_accident_patient">ผู้ป่วยประสบอุบัติเหตุจาการทำงาน</option>
+                        <option value="hiv_aids_patient">ผู้ป่วยเชื้อเอชไอวี / เอดส์</option>
+                        <option value="illegal_immigrant">ต่างด้าวหลบหนีเข้าเมือง</option>
+                        <option value="no_id_thai">คนไทยไม่มีเลข 13 หลัก / ตกหล่น</option>
+                        <option value="no_insurance">ผู้ไม่มีหลักประกัน / ผู้มีปัญหาการใช้สิทธิ</option>
+                        <option value="insurance_not_covered">สิทธิการรักษาไม่คุ้มครอง</option>
+                        <option value="car_accident_patient">ผู้ป่วยอุบัติเหตุจากรถ</option>
+                        <option value="other_risk_group">อื่นๆระบุ กลุ่มเสี่ยงต่อการร้องเรียน</option>
+                    </select>
+                </div>
+            </div>
+            <!-- ฟิลด์เพิ่มเติมที่จะแสดงตามตัวเลือก -->
+            <div id="disease_field" class="form-group hidden">
+                <label for="disease_input">ระบุโรค:</label>
+                <input type="text" id="disease_input" name="disease_input" placeholder="ระบุโรค">
+            </div>
+
+            <div id="type_field" class="form-group hidden">
+                <label for="type_input">ระบุประเภท:</label>
+                <input type="text" id="type_input" name="type_input" placeholder="ระบุประเภท">
+            </div>
+
+            <div id="specify_field" class="form-group hidden">
+                <label for="specify_input">ระบุ:</label>
+                <input type="text" id="specify_input" name="specify_input" placeholder="ระบุข้อมูลเพิ่มเติม">
+            </div>
+
+            <div id="symptom_field" class="form-group hidden">
+                <label for="symptom_input">ระบุอาการ:</label>
+                <input type="text" id="symptom_input" name="symptom_input" placeholder="ระบุอาการ">
+            </div>
+
+            <!-- ฟิลด์ใหม่: ค่ารักษาพยาบาล, ชำระเงินได้, อนุเคราะห์ -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="medical_fee">ค่ารักษาพยาบาล:</label>
+                    <input type="text" id="medical_fee" name="medical_fee" placeholder="ระบุค่ารักษาพยาบาล">
+                </div>
+                <div class="form-group">
+                    <label for="payment_ability">ชำระเงินได้:</label>
+                    <input type="text" id="payment_ability" name="payment_ability"
+                        placeholder="ระบุจำนวนเงินที่ชำระได้">
+                </div>
+                <div class="form-group">
+                    <label for="assistance">อนุเคราะห์:</label>
+                    <input type="text" id="assistance" name="assistance" placeholder="ระบุการอนุเคราะห์">
+                </div>
+            </div>
+
+            <!-- ฟิลด์เพิ่มเติม: ผู้ให้ข้อมูล -->
+            <h4>ผู้ให้ข้อมูล</h4>
+            <div class="radio-group">
+                <label><input type="radio" name="information_type" value="user" onclick="toggleOtherFields()">
+                    ผู้ใช้บริการ</label>
+                <label><input type="radio" name="information_type" value="other" onclick="toggleOtherFields()">
+                    ผู้อื่น</label>
+            </div>
+
+            <!-- ฟิลด์เพิ่มเติมที่จะปรากฏเมื่อเลือก "ผู้อื่น" -->
+            <div id="other_fields" class="hidden">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="other_name">ระบุชื่อ:</label>
+                        <input type="text" id="other_name" name="other_name" placeholder="ระบุชื่อ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relationship">เกี่ยวข้องเป็น:</label>
+                        <input type="text" id="relationship" name="relationship" placeholder="เกี่ยวข้องเป็น">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- ฟิลด์ ที่อยู่ผู้ให้ข้อมูล และ หมายเลขโทรศัพท์ให้อยู่ในบรรทัดเดียวกัน -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="info_address">ที่อยู่ผู้ให้ข้อมูล:</label>
+                    <input type="text" id="info_address" name="info_address" placeholder="ระบุที่อยู่">
+                </div>
+                <div class="form-group">
+                    <label for="info_phone">หมายเลขโทรศัพท์:</label>
+                    <input type="tel" id="info_phone" name="info_phone" placeholder="ระบุหมายเลขโทรศัพท์">
+                </div>
+            </div>
+
+            <!-- ฟิลด์รายได้เฉลี่ยต่อเดือน และ Radio Buttons ในบรรทัดเดียวกัน -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="monthly_income">รายได้เฉลี่ยต่อเดือน:</label>
+                    <input type="text" id="monthly_income" name="monthly_income" placeholder="ระบุรายได้เฉลี่ยต่อเดือน">
+                </div>
+            </div>
+            <h4>แหล่งที่มาของรายได้:</h4>
+
+            <!-- Radio Buttons สำหรับเลือกแหล่งที่มาของรายได้ -->
+            <div class="form-row">
+                <div class="radio-group">
+                    <label><input type="radio" name="income_source" value="work" onclick="toggleSourceField()">
+                        จากการทำงาน</label>
+                    <label><input type="radio" name="income_source" value="others" onclick="toggleSourceField()">
+                        จากผู้อื่น</label>
+                </div>
+            </div>
+
+            <!-- ฟิลด์ที่จะปรากฏเมื่อเลือก "จากผู้อื่น" -->
+            <div id="source_field" class="form-group hidden">
+                <label for="source_input">แหล่งที่มาของรายได้มาจากใคร:</label>
+                <input type="text" id="source_input" name="source_input" placeholder="ระบุชื่อแหล่งที่มาของรายได้">
+            </div>
+
+            <h4>การมีหนี้สิน:</h4>
+
+            <!-- Radio Buttons สำหรับเลือกการมีหนี้สิน -->
+            <div class="form-row">
+                <div class="radio-group">
+                    <label><input type="radio" name="debt_status" value="มี" onclick="toggleDebtFields()"> มี</label>
+                    <label><input type="radio" name="debt_status" value="ไม่มี" onclick="toggleDebtFields()">
+                        ไม่มี</label>
+                </div>
+            </div>
+
+            <!-- ฟิลด์ที่จะปรากฏเมื่อเลือก "มีหนี้สิน" -->
+            <div id="debt_fields" class="hidden">
+                <!-- ฟิลด์ระบุจำนวนหนี้สิน -->
+                <div class="form-group">
+                    <label for="debt_amount">จำนวนหนี้สิน:</label>
+                    <input type="number" id="debt_amount" name="debt_amount" placeholder="ระบุจำนวนหนี้สิน">
+                </div>
+                <br>
+
+                <!-- Radio Buttons สำหรับเลือกแหล่งหนี้สิน -->
+                <div class="form-row">
+                    <div class="radio-group">
+                        <label><input type="radio" name="debt_source" value="ในระบบ"> ในระบบ</label>
+                        <label><input type="radio" name="debt_source" value="นอกระบบ"> นอกระบบ</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 3 -->
+    <div class="form-container">
+        <form id="mySocialIssues">
+            <h3>ส่วนที่ 3 ข้อมูลทางสังคม / ปัญหาที่ส่งมารับบริการ /
+                การประเมินวินิจฉัยทางปัญหาทางสังคม(ระบบปัญหาได้มากกว่า 1 ปัญหา)</h3>
+
+            <!-- Checkbox 18 อัน -->
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="social_issues" value="1"> ไม่มีปัญหาสังคม</label>
+                <label><input type="checkbox" name="social_issues" value="2"> ปัญหาคู่สมรสและการครองเรือน</label>
+                <label><input type="checkbox" name="social_issues" value="3"> ปัญหาระหว่างบิดา มารดา บุตร</label>
+                <label><input type="checkbox" name="social_issues" value="4"> ปัญหาความแตกแยกในครอบครัว</label>
+                <label><input type="checkbox" name="social_issues" value="5"> ปัญหาความสัมพันธ์ระหว่างเครือญาติ</label>
+                <label><input type="checkbox" name="social_issues" value="6"> ปัญหาความรัก</label>
+                <label><input type="checkbox" name="social_issues" value="7"> ปัญหาทางเพศ</label>
+                <label><input type="checkbox" name="social_issues" value="8"> ปัญหาภาระในการดูแลผู้เจ็บ /
+                    ผู้พิการ</label>
+                <label><input type="checkbox" name="social_issues" value="9"> ปัญหาที่อยู่อาศัย /
+                    สภาพแวดล้อมที่เป็นภัยต่อสุขภาพ</label>
+                <label><input type="checkbox" name="social_issues" value="10">
+                    ปัญหาที่เกิดจากบุคคลอื่นนอกครอบครัว</label>
+                <label><input type="checkbox" name="social_issues" value="11"> ปัญหาการเงิน</label>
+                <label><input type="checkbox" name="social_issues" value="12"> ปัญหาการศึกษา</label>
+                <label><input type="checkbox" name="social_issues" value="13"> ปัญหาการประกอบอาชีพ</label>
+                <label><input type="checkbox" name="social_issues" value="14"> ปัญหาทางกฎหมาย</label>
+                <label><input type="checkbox" name="social_issues" value="15">
+                    ปัญหาที่เป็นอุปสรรคต่อการดูแลสุขภาพผู้ป่วย</label>
+                <label><input type="checkbox" name="social_issues" value="16"> ปัญหาความเชื่อ วัฒนธรรม
+                    และการเมือง</label>
+                <label><input type="checkbox" name="social_issues" value="17"> ปัญหาสารเสพติด /
+                    สารที่ออกฤทธิ์ต่อจิตประสาท</label>
+                <label><input type="checkbox" name="social_issues" value="18"> ปัญหาที่เป็นปรากฏการณ์ทางสังคม /
+                    ปัญหาอื่นๆ</label>
+            </div>
+
+
+            <!-- Free Text ฟิลด์ 2 อัน -->
+            <br>
+            <div class="form-group">
+                <label for="free_text1">สภาพปัญหาที่พบและบันทึกเพิ่มเติม</label>
+                <textarea id="free_text1" name="free_text1"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="free_text2">การวางแผนการช่วยเหลือ ระยะสั้น / ระยะยาว</label>
+                <textarea id="free_text2" name="free_text2"></textarea>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+
+    </div>
+    <!--ส่วนที่ 4 -->
+    <div class="form-container">
+        <form id="myAssistanceNeeds">
+            <h3>ส่วนที่ 4 การช่วยเหลือตามสภาพปัญหาและความต้องการของผู้ป่วย (สามารถระบุได้มากกว่า 1 ห้วข้อ)</h3>
+
+            <!-- Checkbox 5 อัน -->
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="assistance_needs" value="1"> ไม่มีความต้องการ</label>
+                <label><input type="checkbox" name="assistance_needs" value="2"> การเสริมพลังอำนาจ</label>
+                <label><input type="checkbox" name="assistance_needs" value="3"> การฟื้นฟูสมรรถภาพทางสังคม</label>
+                <label><input type="checkbox" name="assistance_needs" value="4"> การบริการทางสังคม</label>
+                <label><input type="checkbox" name="assistance_needs" value="5"> การจัดการทรัพยากรทางสังคม</label>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 5 -->
+    <div class="form-container">
+        <form id="myRiskAssessment">
+            <h3>ส่วนที่ 5 การประเมินความเสี่ยงของผู้ป่วย สามารถระบุได้มากกว่า 1 ประเด็นความเสี่ยง / ปัจจัยความเสี่ยง
+            </h3>
+
+            <!-- Checkbox 14 อัน -->
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="check1" name="check1" value="1" onclick="toggleTextField(1)">
+                    ไม่มีความเสี่ยง</label>
+                <div id="textField1" class="form-group hidden">
+                    <textarea id="input1" name="input1" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check2" name="check2" value="2" onclick="toggleTextField(2)">
+                    การเจ็บป่วยซํ้า</label>
+                <div id="textField2" class="form-group hidden">
+                    <textarea id="input2" name="input2" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check3" name="check3" value="3" onclick="toggleTextField(3)">
+                    การทำแท้ง / ทอดทิ้งบุตร</label>
+                <div id="textField3" class="form-group hidden">
+                    <textarea id="input3" name="input3" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check4" name="check4" value="4" onclick="toggleTextField(4)">
+                    การทำร้ายผู้อื่น</label>
+                <div id="textField4" class="form-group hidden">
+                    <textarea id="input4" name="input4" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check5" name="check5" value="5" onclick="toggleTextField(5)">
+                    การถูกล่วงละเมิด / ก่ออาชญากรรม / การเป็นเหยื่อการค้ามนุษย์</label>
+                <!-- <div id="textField5" class="form-group hidden">
+                    <textarea id="input5" name="input5" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div> -->
+
+                <label><input type="checkbox" id="check6" name="check6" value="6" onclick="toggleTextField(6)">
+                    การรับและแพร่เชื้อ HIV</label>
+                <div id="textField6" class="form-group hidden">
+                    <textarea id="input6" name="input6" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check7" name="check7" value="7" onclick="toggleTextField(7)">
+                    การเกิดปัญหาสุขภาพจิต / จิตเวช</label>
+                <div id="textField7" class="form-group hidden">
+                    <textarea id="input7" name="input7" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check8" name="check8" value="8" onclick="toggleTextField(8)">
+                    การหลบหนี</label>
+                <div id="textField8" class="form-group hidden">
+                    <textarea id="input8" name="input8" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check9" name="check9" value="9" onclick="toggleTextField(9)">
+                    การมีปัญหาครอบครัว</label>
+                <div id="textField9" class="form-group hidden">
+                    <textarea id="input9" name="input9" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check10" name="check10" value="10" onclick="toggleTextField(10)">
+                    การติดสารเสพติด / เสพซํ้า</label>
+                <div id="textField10" class="form-group hidden">
+                    <textarea id="input10" name="input10" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check11" name="check11" value="11" onclick="toggleTextField(11)">
+                    การฆ่าตัวตาย</label>
+                <div id="textField11" class="form-group hidden">
+                    <textarea id="input11" name="input11" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check12" name="check12" value="12" onclick="toggleTextField(12)">
+                    การถูกกีดกัน / ถูกเลือกปฏิบัติจากชุมชนหรือสังคม / ไม่ได้รับความเป็นธรรม</label>
+                <!-- <div id="textField12" class="form-group hidden">
+                    <textarea id="input12" name="input12" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div> -->
+
+                <label><input type="checkbox" id="check13" name="check13" value="13" onclick="toggleTextField(13)">
+                    การได้รับการเลี้ยงดู / ดูแลไม่เหมาะสม</label>
+                <div id="textField13" class="form-group hidden">
+                    <textarea id="input13" name="input13" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+                <label><input type="checkbox" id="check14" name="check14" value="14" onclick="toggleTextField(14)">
+                    การถูกญาติทอดทิ้ง / ไม่ยอมรับ</label>
+                <div id="textField14" class="form-group hidden">
+                    <textarea id="input14" name="input14" placeholder="กรุณาระบุรายละเอียด"></textarea>
+                </div>
+
+
+
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 6 -->
+    <div class="form-container">
+        <form id="mySocialSupportForm">
+            <h3>ส่วนที่ 6 การใช้แหล่งสนับสนุนทางสังคมของผู้ป่วย / ครอบครัว</h3>
+
+            <!-- ฟิลด์ Free Text -->
+            <div class="form-group">
+                <textarea id="social_support" name="social_support"
+                    placeholder="กรุณากรอกข้อมูลเกี่ยวกับแหล่งสนับสนุนทางสังคมของผู้ป่วยและครอบครัว"></textarea>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 7 -->
+    <div class="form-container">
+        <form id="myEvaluationForm">
+            <h3>ส่วนที่ 7 การติดตามและประเมินผล</h3>
+
+            <!-- ฟิลด์ Free Text -->
+            <div class="form-group">
+                <textarea id="evaluation" name="evaluation"
+                    placeholder="กรุณากรอกข้อมูลเกี่ยวกับการติดตามและประเมินผล"></textarea>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 8 -->
+    <div class="form-container">
+        <h3>ส่วนที่ 8 ยุติการให้บริการ</h3>
+        <form id="myServiceTerminationForm">
+            <div class="form-group">
+                <label for="topic_select">เลือกหัวข้อ:</label>
+                <select id="topic_select" name="topic_select" onchange="toggleTextField_8()">
+                    <option value="">-- กรุณาเลือกหัวข้อ --</option>
+                    <option value="option1">ผู้ใช้บริการสามารถดำรงชีวิตได้อย่างปกติ</option>
+                    <option value="option2">ส่งต่อไปรับบริการยังหน่วยงานอื่น</option>
+                    <option value="option3">ผู้ใช้บริการถึงแก่กรรม</option>
+                    <option value="option4">ผู้ใช้บริการปฏิเสธการบริการ</option>
+                    <option value="option5">ย้ายที่อยู่</option>
+                </select>
+                <br>
+            </div>
+
+            <div class="form-group hidden" id="free_text_container">
+                <textarea id="free_text" name="free_text"
+                    placeholder="กรุณาระบุข้อมูลเกี่ยวกับหน่วยงานที่ส่งต่อ"></textarea>
+            </div>
+
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 9 -->
+    <div class="form-container">
+        <h3>ส่วนที่ 9 มีการประเมินครอบครัว หรือไม่</h3>
+        <form id="myFamilyEvaluationForm">
+            <!-- สร้าง Radio Buttons -->
+            <div class="radio-group">
+                <label><input type="radio" name="family_evaluation" value="no" onclick="toggleEvaluationField()">
+                    ไม่มี</label>
+                <label><input type="radio" name="family_evaluation" value="yes" onclick="toggleEvaluationField()">
+                    มี</label>
+            </div>
+
+            <br>
+
+            <!-- ฟิลด์สำหรับผลการประเมิน -->
+            <div id="evaluation_field" class="form-group hidden">
+                <input type="number" id="evaluation_score" name="evaluation_score" min="0" max="100"
+                    placeholder="ระบุคะแนนการประเมิน">
+            </div>
+
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
+    <!--ส่วนที่ 10 -->
+    <div class="form-container">
+        <h3>ส่วนที่ 10 ผังครอบครัว / แผนที่บ้าน</h3>
+        <form id="imageUploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image_upload">เลือกไฟล์รูปภาพ:</label>
+                <input type="file" id="image_upload" name="image_upload" accept="image/*" required>
+            </div>
+            <button type="submit">อัปโหลดรูปภาพ</button>
+        </form>
+    </div>
+
+
+    <script>
+        // ฟังก์ชันแสดงหรือซ่อนฟิลด์ระบุหน่วยงานหรือแผนกตามที่เลือก
+        function showFields_1() {
+            var selectElement = document.getElementById("search_criteria");
+            var organizationField = document.getElementById("organization_field");
+            var internalFields = document.getElementById("internal_fields");
+            var admitDateField = document.getElementById("admit_date_field");
+
+            if (selectElement.value === "organization") {
+                organizationField.classList.remove("hidden");
+                internalFields.classList.add("hidden");
+                admitDateField.classList.add("hidden");
+            } else if (selectElement.value === "internal") {
+                organizationField.classList.add("hidden");
+                internalFields.classList.remove("hidden");
+                admitDateField.classList.remove("hidden");
+            } else {
+                organizationField.classList.add("hidden");
+                internalFields.classList.add("hidden");
+                admitDateField.classList.add("hidden");
+            }
+        }
+
+        function showFields_2() {
+            var selectElement = document.getElementById("service_type");
+            var diseaseField = document.getElementById("disease_field");
+            var typeField = document.getElementById("type_field");
+            var specifyField = document.getElementById("specify_field");
+            var symptomField = document.getElementById("symptom_field");
+
+            diseaseField.classList.add("hidden");
+            typeField.classList.add("hidden");
+            specifyField.classList.add("hidden");
+            symptomField.classList.add("hidden");
+
+            switch (selectElement.value) {
+                case "general_patient":
+                case "chronic_disease_patient":
+                    diseaseField.classList.remove("hidden");
+                    break;
+                case "oscc":
+                case "disabled_person":
+                    typeField.classList.remove("hidden");
+                    break;
+                case "drug_addict":
+                    specifyField.classList.remove("hidden");
+                    break;
+                case "psychiatric_patient":
+                    symptomField.classList.remove("hidden");
+                    break;
+            }
+        }
+
+        // ฟังก์ชันแสดงหรือซ่อนฟิลด์แหล่งที่มาของรายได้
+        function toggleSourceField() {
+            var sourceField = document.getElementById("source_field");
+            var selectedValue = document.querySelector('input[name="income_source"]:checked').value;
+
+            if (selectedValue === "others") {
+                sourceField.classList.remove("hidden");
+            } else {
+                sourceField.classList.add("hidden");
+            }
+        }
+
+        // ฟังก์ชันแสดงหรือซ่อนฟิลด์สำหรับการมีหนี้สิน
+        function toggleDebtFields() {
+            var debtFields = document.getElementById("debt_fields");
+            var selectedValue = document.querySelector('input[name="debt_status"]:checked').value;
+
+            if (selectedValue === "มี") {
+                debtFields.classList.remove("hidden");
+            } else {
+                debtFields.classList.add("hidden");
+            }
+        }
+
+        function toggleTextField(num) {
+            var textField = document.getElementById('textField' + num);
+            var checkBox = document.getElementById('check' + num);
+
+            // Toggle textarea visibility based on the checkbox state
+            if (checkBox.checked) {
+                textField.classList.remove('hidden');
+            } else {
+                textField.classList.add('hidden');
+            }
+        }
+
+        function toggleTextField_8() {
+            const topicSelect = document.getElementById('topic_select');
+            const freeTextContainer = document.getElementById('free_text_container');
+
+            if (topicSelect.value === 'option2') {
+                freeTextContainer.classList.remove('hidden');
+            } else {
+                freeTextContainer.classList.add('hidden');
+            }
+        }
+
+        function toggleEvaluationField() {
+            var evaluationField = document.getElementById("evaluation_field");
+            var selectedValue = document.querySelector('input[name="family_evaluation"]:checked').value;
+
+            if (selectedValue === "yes") {
+                evaluationField.classList.remove("hidden"); // แสดงฟิลด์สำหรับผลการประเมิน
+            } else {
+                evaluationField.classList.add("hidden"); // ซ่อนฟิลด์
+            }
+        }
+        function toggleOtherFields() {
+            var otherFields = document.getElementById("other_fields");
+            var selectedValue = document.querySelector('input[name="information_type"]:checked').value;
+
+            if (selectedValue === "other") {
+                otherFields.classList.remove("hidden");
+            } else {
+                otherFields.classList.add("hidden");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
